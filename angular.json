@@ -28,6 +28,8 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/scss/bootstrap.scss",
+              "./node_modules/font-awesome/scss/font-awesome.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngrx-demo"
+    }
+  },
+  "defaultProject": "ngrx-demo",
+  "cli": {
+    "analytics": "719eade7-8d00-44dc-9d40-9ca02c0f955e"
+  }
 }
