@@ -1,8 +1,10 @@
 <div class='card mt-2' *ngIf="(users$ | async) as users">
   <div class='card-header'>
     User List
-    <span class="btn btn-success float-right" [routerLink]="['add']" routerLinkActive="router-link-active">Add
-      User</span>
+
+    <button class="btn btn-success float-right mx-2" [routerLink]="['add']" routerLinkActive="router-link-active">Add
+      User</button>
+      <button class="btn btn-info float-right mx-2 float-right" [routerLink]="['show']" *ngIf="selectedUserId" routerLinkActive="router-link-active">Details</button>
   </div>
   <div class='card-body'>
     <div class='table-responsive'>
@@ -13,16 +15,18 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Profile</th>
             <th>Operation</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let user of users;let i=index;'>
+          <tr [ngClass]="{'bg-light': user.id == selectedUserId}" *ngFor='let user of users;let i=index;' (click)="onDetailShow(user.id)">
             <td>{{ user.id }}</td>
             <td>{{ user.first_name }}</td>
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
-            <td> <span (click)="onDelete(user.id)" class="fa fa-trash color-red pointer"></span>
+            <td><img [src]="user.avatar" class="avatar" alt=""></td>
+            <td> <span (click)="onDelete(user.id)" class="fa fa-trash  pointer"></span>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <span class="fa fa-edit color-green pointer" [routerLink]="['edit',user.id]"
                 routerLinkActive="router-link-active"></span>

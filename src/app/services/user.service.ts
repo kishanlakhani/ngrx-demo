@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { User } from './../models/user.interface';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +15,7 @@ export class UserService {
   ) { }
 
   getUsers(): Observable<any> {
-    return this.http.get(this.apiUrl + 'users');
+    return this.http.get(this.apiUrl + 'users').pipe(map((res: any) => res.data));
   }
 
   deleteUser(id: string): Observable<any> {

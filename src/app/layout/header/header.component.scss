@@ -1,0 +1,13 @@
+@import './../../../styles/abstracts/variables';
+
+.navbar {
+    background-color: $blue !important;
+}
+
+a {
+    color: $gray-300 !important;
+}
+
+.active, li:hover a{
+    color: $white !important;
+}

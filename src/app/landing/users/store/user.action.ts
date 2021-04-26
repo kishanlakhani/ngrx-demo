@@ -19,6 +19,10 @@ export enum UserActionTypes {
     UpdateUserSuccess = '[User] Update User Success',
     UpdateUserFailure = '[User] Update User Failure',
 
+    SelectedUserId = '[User] User Id',
+    ClearUserId = '[User] User Id Clear',
+    StopLoading = '[User] Loading Stop'
+
 }
 
 
@@ -86,6 +90,19 @@ export class UpdateUserFailure implements Action {
     constructor(public payload: { error: string }) { }
 }
 
+export class SelectedUserId implements Action {
+    readonly type = UserActionTypes.SelectedUserId;
+    constructor(public payload: { userId: string }) { }
+}
+
+export class ClearUserId implements Action {
+    readonly type = UserActionTypes.ClearUserId;
+}
+
+export class StopLoading implements Action {
+    readonly type = UserActionTypes.StopLoading;
+}
+
 export type UserActions =
     LoadUsers |
     LoadUsersSuccess |
@@ -98,6 +115,9 @@ export type UserActions =
     AddUserFailure |
     UpdateUser |
     UpdateUserSuccess |
-    UpdateUserFailure;
+    UpdateUserFailure |
+    SelectedUserId |
+    ClearUserId |
+    StopLoading;
 
 

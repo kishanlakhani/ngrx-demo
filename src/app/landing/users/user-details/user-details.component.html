@@ -1,0 +1,62 @@
+<!-- {{ userDetails$ | async | json }} -->
+<div class="background"></div>
+<div class="profile-card" *ngIf="userDetails$ | async as user">
+    <div class="cover"></div>
+    <div class="profile">
+        <div class="pic" [style.background-image]="'url('+ user.avatar +')'"></div>
+        <div class="above-fold">
+            <div class="name">
+                {{ user.first_name  + '-' + user.last_name }}
+            </div>
+            <div class="role">
+                <!-- UX Engineer -->
+            </div>
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i>{{ user.email }}
+            </div>
+            <div class="row">
+                <div class="button">
+                    FOLLOW
+                </div>
+                <div class="button">
+                    MESSAGE
+                </div>
+            </div>
+            <div id="expand-button">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+        <!-- <div class="below-fold">
+            <div class="about">
+                <h3>
+                    About
+                </h3>
+                <p>
+                    Hi, I am Douwe de Vries, 28 summers young and I am passionate about User Experiences, Design,
+                    Front-end development and game development. Like to talk about any of these things? Shoot me a
+                    message!
+                </p>
+            </div>
+            <div class="row stats">
+                <div class="stat">
+                    <label>Posts</label>
+                    <div class="num">
+                        956
+                    </div>
+                </div>
+                <div class="stat">
+                    <label>Followers</label>
+                    <div class="num">
+                        312
+                    </div>
+                </div>
+                <div class="stat">
+                    <label>Following</label>
+                    <div class="num">
+                        104
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>

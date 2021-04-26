@@ -1,24 +1,42 @@
 import { User } from './../../../models/user.interface';
 import { UserService } from './../../../services/user.service';
 import { Action, Store } from '@ngrx/store';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { mergeMap, map, catchError, withLatestFrom, filter } from 'rxjs/operators';
 import * as userAction from './user.action';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-
+import * as formUser from './index';
 
 
 @Injectable()
 export class UserEffects {
-  constructor(private actions$: Actions, private userService: UserService) { }
+  constructor(private actions$: Actions, private userService: UserService, private store: Store ) { }
+
+  // @Effect()
+  // loadUsers$: Observable<Action> = this.actions$.pipe(
+  //   ofType(userAction.UserActionTypes.LoadUsers),
+  //   mergeMap((action) => {
+  //     return this.userService.getUsers().pipe(
+  //       map((res: User[]) => (new userAction.LoadUsersSuccess({ data: res['data'] }))),
+  //       catchError((err: string) => of(new userAction.LoadUsersFailure({ error: err })))
+  //     );
+
+  //   })
+  // );
+
 
   @Effect()
   loadUsers$: Observable<Action> = this.actions$.pipe(
     ofType(userAction.UserActionTypes.LoadUsers),
+    withLatestFrom(this.store.select(formUser.isUsersLoaded())),
+    filter(([action, hasLoaded]) => {
+      this.store.dispatch(new formUser.StopLoading());
+      return !hasLoaded;
+    }),
     mergeMap((action) => {
       return this.userService.getUsers().pipe(
-        map((res: User[]) => (new userAction.LoadUsersSuccess({ data: res['data'] }))),
+        map((res: User[]) => (new userAction.LoadUsersSuccess({ data: res }))),
         catchError((err: string) => of(new userAction.LoadUsersFailure({ error: err })))
       );
 

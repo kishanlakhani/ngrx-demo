@@ -1,0 +1,24 @@
+@import "./../../../../styles/abstracts/variables";
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin: 10px;
+}
+
+tbody tr {
+    cursor: pointer;
+}
+
+.fa {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    &.fa-trash {
+        color: $red !important;
+    }
+    &.fa-edit {
+        color: $primary;
+    }
+}

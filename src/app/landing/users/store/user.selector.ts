@@ -11,11 +11,17 @@ export const getUsers = () => createSelector(
   }
 );
 
-export const getSingleUser = (id: string) => createSelector(
+export const getSingleUser = (id = '') => createSelector(
   userFeatureState,
   state => {
-    return state.users.find(user => user.id == id);
+    const userId = id || state.selectedUserId;
+    return state.users.find(user => user.id == userId);
   }
+);
+
+export const getSelectedUserId = () => createSelector(
+  userFeatureState,
+  state => state.selectedUserId
 );
 
 export const getUsersLength = () => createSelector(
@@ -23,8 +29,17 @@ export const getUsersLength = () => createSelector(
   state => state.users.length
 );
 
+export const isUsersLoaded = () => createSelector(
+  userFeatureState,
+  state => state.users.length > 0 ? true : false
+);
 
 export const getError = () => createSelector(
   userFeatureState,
   state => state.error
+);
+
+export const getLoadingStatus = () => createSelector(
+  userFeatureState,
+  state => state.isLoading
 );

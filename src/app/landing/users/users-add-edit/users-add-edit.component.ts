@@ -20,7 +20,8 @@ export class UsersAddEditComponent implements OnInit {
   selectedUser: User = {
     first_name: '',
     last_name: '',
-    email: ''
+    email: '',
+    avatar: ''
   };
   constructor(
     private route: ActivatedRoute,
@@ -48,7 +49,8 @@ export class UsersAddEditComponent implements OnInit {
     this.userForm = new FormGroup({
       first_name: new FormControl(this.selectedUser.first_name),
       last_name: new FormControl(this.selectedUser.last_name),
-      email: new FormControl(this.selectedUser.email)
+      email: new FormControl(this.selectedUser.email),
+      avatar: new FormControl(this.selectedUser.avatar)
     });
   }
 
